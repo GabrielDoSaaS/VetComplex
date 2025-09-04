@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetComplex IA - Seu Assistente Veterinário</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f8f8;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .tab-button.active {
+            border-bottom: 2px solid #0d1a2b;
+            font-weight: 600;
+            color: #0d1a2b;
+        }
+    </style>
+</head>
+<body class="text-gray-900">
+
+    <header class="bg-white sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2">
+                <img src="https://placehold.co/40x40/0d1a2b/ffffff?text=VC" alt="VetComplex Logo" class="rounded-full">
+                <span class="text-xl font-bold text-gray-800">VetComplex IA</span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#o-que-e" class="text-gray-600 hover:text-[#0d1a2b] transition-colors">O que é?</a>
+                <a href="#como-usar" class="text-gray-600 hover:text-[#0d1a2b] transition-colors">Como Usar</a>
+                <a href="#planos" class="text-gray-600 hover:text-[#0d1a2b] transition-colors">Planos</a>
+                <a href="#termos" class="text-gray-600 hover:text-[#0d1a2b] transition-colors">Termos</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-gray-800 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
+            <a href="#o-que-e" class="block py-3 px-6 text-gray-600 hover:bg-gray-100">O que é?</a>
+            <a href="#como-usar" class="block py-3 px-6 text-gray-600 hover:bg-gray-100">Como Usar</a>
+            <a href="#planos" class="block py-3 px-6 text-gray-600 hover:bg-gray-100">Planos</a>
+            <a href="#termos" class="block py-3 px-6 text-gray-600 hover:bg-gray-100">Termos</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="o-que-e" class="bg-white py-12 md:py-16">
+            <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-gray-900 mb-4">
+                        O futuro da Medicina Veterinária.
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-600 mb-8">
+                        VetComplex IA é um assistente de inteligência artificial que transforma a complexidade de um vasto acervo científico em insights claros e relevantes. 
+                    </p>
+                    <p class="text-lg md:text-xl text-gray-600 mb-8">
+                         Ele ajuda a conectar evidências, comparar alternativas e organizar protocolos da literatura, apoiando o médico veterinário na formulação de diagnósticos, revisão de tratamentos e análise de exames.
+                    </p>
+                    <a href="#planos" class="bg-[#0d1a2b] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-800 transition-colors shadow-lg">
+                        Comece Agora
+                    </a>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="./searchvetia-1.png" alt="VetComplex IA UI" class="rounded-lg shadow-2xl w-4/5 max-w-xl">
+                </div>
+            </div>
+        </section>
+
+        <section id="recursos" class="py-20 bg-gray-100">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12">Recursos que transformam sua clínica</h2>
+                <div class="grid md:grid-cols-3 gap-10">
+                    <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="flex justify-center mb-4">
+                            <svg class="w-12 h-12 text-[#0d1a2b]" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9 2a1 1 0 000 2a1 1 0 110-2zm0 4a1 1 0 000 2a1 1 0 110-2zm0 4a1 1 0 000 2a1 1 0 110-2zm0 4a1 1 0 000 2a1 1 0 110-2zm-6 2a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Hipóteses Diagnósticas</h3>
+                        <p class="text-gray-600">Formule hipóteses diagnósticas baseadas em uma vasta base de literatura científica atualizada.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="flex justify-center mb-4">
+                            <svg class="w-12 h-12 text-[#0d1a2b]" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M7 3a1 1 0 00-1 1v1a1 1 0 002 0V4a1 1 0 00-1-1zM5 11h10a1 1 0 000-2H5a1 1 0 000 2zM9 11h2a1 1 0 000-2H9a1 1 0 000 2zM4 14a1 1 0 011-1h10a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Revisão de Condutas</h3>
+                        <p class="text-gray-600">Revise condutas terapêuticas descritas na literatura e compare alternativas de tratamento.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div class="flex justify-center mb-4">
+                            <svg class="w-12 h-12 text-[#0d1a2b]" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm0 4a1 1 0 011 1v1a1 1 0 11-2 0V7a1 1 0 011-1zM5 8a1 1 0 100 2h1a1 1 0 100-2H5zm9-1a1 1 0 110 2h1a1 1 0 110-2h-1zM4 11a1 1 0 11-2 0V5a1 1 0 012 0v6zm12 0a1 1 0 11-2 0v-6a1 1 0 012 0v6zM4 15a1 1 0 100 2h12a1 1 0 100-2H4zm8-5a1 1 0 110 2h1a1 1 0 110-2h-1z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Análise de Exames</h3>
+                        <p class="text-gray-600">Receba apoio na análise de achados de exames complementares.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="como-usar" class="py-20 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12">Como utilizar o VetComplex IA</h2>
+                <div class="grid md:grid-cols-5 gap-10">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="bg-[#0d1a2b] text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold mb-4">1</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Escolha o plano</h3>
+                        <p class="text-gray-600">Selecione o plano mais adequado (Solo, Duo, Equipe ou Total).</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <div class="bg-[#0d1a2b] text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold mb-4">2</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Receba o link</h3>
+                        <p class="text-gray-600">Após a assinatura, você recebe o link exclusivo para interagir com o VetComplex IA.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <div class="bg-[#0d1a2b] text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold mb-4">3</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Crie conta no ChatGPT</h3>
+                        <p class="text-gray-600">O VetComplex IA funciona integrado ao ChatGPT. Se ainda não tiver, basta criar uma conta gratuita.</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <div class="bg-[#0d1a2b] text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold mb-4">4</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Acesse o VetComplex IA</h3>
+                        <p class="text-gray-600">Clique no link fornecido, faça login no ChatGPT e inicie sua sessão com o assistente.</p>
+                    </div>
+                     <div class="flex flex-col items-center text-center">
+                        <div class="bg-[#0d1a2b] text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold mb-4">5</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Insira os dados clínicos</h3>
+                        <p class="text-gray-600">Informe de forma objetiva e anonimizada: espécie, sexo, idade, peso e sinais clínicos relevantes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="objetivo" class="py-20 bg-gray-100">
+            <div class="container mx-auto px-6 text-center md:text-left">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Nosso Objetivo</h2>
+                    <p class="text-lg md:text-xl text-gray-600 leading-relaxed">
+                        Mais do que compilar informações cruciais, o VetComplex IA atua como um assistente estratégico movido por IA avançada, trazendo agilidade e profundidade à rotina clínica.
+                    </p>
+                    <p class="text-lg md:text-xl text-gray-600 leading-relaxed">
+                         Acreditamos que a inteligência artificial pode ser uma poderosa aliada para a medicina veterinária, potencializando a capacidade dos profissionais de salvar vidas e melhorar a qualidade de vida dos animais. Nosso objetivo é fornecer uma ferramenta de ponta, desenvolvida por veterinários para veterinários, que não substitui o julgamento humano, mas o aprimora, tornando o diagnóstico mais rápido, preciso e fundamentado em dados. Queremos que você tenha mais tempo para se concentrar no que realmente importa: o cuidado com seus pacientes.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="planos" class="py-20 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12">Escolha o plano ideal para você</h2>
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="flex flex-col bg-gray-100 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Plano Solo</h3>
+                        <p class="text-4xl font-extrabold text-[#0d1a2b] mb-1">R$ 79<span class="text-lg font-normal text-gray-600">/mês</span></p>
+                        <p class="text-lg font-medium text-gray-600 mb-4">por profissional</p>
+                        <p class="text-gray-600 mb-6 flex-grow">Ideal para médicos veterinários individuais.</p>
+                        <ul class="text-left text-gray-700 space-y-3 mb-6">
+                            <li class="flex items-center"><svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Acesso ilimitado ao assistente IA</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Análise de exames (limitado)</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>7 dias de teste grátis</li>
+                        </ul>
+                        <p class="text-sm text-gray-500 mt-auto">Valor total: R$ 79/mês</p>
+                        <button class="btn-assinar block bg-[#0d1a2b] text-white px-6 py-3 rounded-full font-bold hover:bg-gray-800 transition-colors mt-4" data-plano="Solo" data-valor="79">Assinar</button>
+                    </div>
+
+                    <div class="flex flex-col bg-gray-100 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Plano Duo</h3>
+                        <p class="text-4xl font-extrabold text-[#0d1a2b] mb-1">R$ 69<span class="text-lg font-normal text-gray-600">/mês</span></p>
+                        <p class="text-lg font-medium text-gray-600 mb-4">por profissional</p>
+                        <p class="text-gray-600 mb-6 flex-grow">Perfeito para clínicas menores ou sócios.</p>
+                        <ul class="text-left text-gray-700 space-y-3 mb-6">
+                            <li class="flex items-center"><svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Todos os recursos do Plano Solo</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Acesso ilimitado à análise de exames</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Pagamento recorrente e automático</li>
+                        </ul>
+                        <p class="text-sm text-gray-500 mt-auto">Valor total: R$ 138/mês (até 2 profissionais)</p>
+                        <button class="btn-assinar block bg-[#0d1a2b] text-white px-6 py-3 rounded-full font-bold hover:bg-gray-800 transition-colors mt-4" data-plano="Duo" data-valor="138">Assinar</button>
+                    </div>
+                    
+                    <div class="flex flex-col bg-gray-100 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Plano Equipe</h3>
+                        <p class="text-4xl font-extrabold text-[#0d1a2b] mb-1">R$ 59<span class="text-lg font-normal text-gray-600">/mês</span></p>
+                        <p class="text-lg font-medium text-gray-600 mb-4">por profissional</p>
+                        <p class="text-gray-600 mb-6 flex-grow">Mais economia e colaboração em equipe.</p>
+                        <ul class="text-left text-gray-700 space-y-3 mb-6">
+                            <li class="flex items-center"><svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Todos os recursos do Plano Duo</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Até 5 profissionais na mesma empresa</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Gerenciamento de equipe centralizado</li>
+                        </ul>
+                        <p class="text-sm text-gray-500 mt-auto">Valor total: R$ 295/mês (até 5 profissionais)</p>
+                        <button class="btn-assinar block bg-[#0d1a2b] text-white px-6 py-3 rounded-full font-bold hover:bg-gray-800 transition-colors mt-4" data-plano="Equipe" data-valor="295">Assinar</button>
+                    </div>
+                    
+                    <div class="flex flex-col bg-gray-100 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Plano Total</h3>
+                        <p class="text-4xl font-extrabold text-[#0d1a2b] mb-1">R$ 49<span class="text-lg font-normal text-gray-600">/mês</span></p>
+                        <p class="text-lg font-medium text-gray-600 mb-4">por profissional</p>
+                        <p class="text-gray-600 mb-6 flex-grow">Pensado para clínicas maiores e hospitais veterinários.</p>
+                        <ul class="text-left text-gray-700 space-y-3 mb-6">
+                            <li class="flex items-center"><svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Todos os recursos do Plano Equipe</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Até 10 profissionais na mesma empresa</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>Acesso ao VetShopGPT (análise de produtos)</li>
+                        </ul>
+                        <p class="text-sm text-gray-500 mt-auto">Valor total: R$ 490/mês (até 10 profissionais)</p>
+                        <button class="btn-assinar block bg-[#0d1a2b] text-white px-6 py-3 rounded-full font-bold hover:bg-gray-800 transition-colors mt-4" data-plano="Total" data-valor="490">Assinar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-[#0d1a2b] text-white py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Pronto para revolucionar seu dia a dia?</h2>
+                <p class="text-lg md:text-xl mb-8 opacity-90">Junte-se a centenas de veterinários que já usam o poder da IA para cuidar melhor de seus pacientes.</p>
+                <a href="#planos" class="bg-white text-[#0d1a2b] px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-200 transition-colors shadow-lg">Comece Sua Jornada</a>
+            </div>
+        </section>
+
+        <section id="termos" class="py-20 bg-gray-100">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Termos de Uso</h2>
+                <div class="max-w-3xl mx-auto space-y-4">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-bold text-xl mb-2 text-gray-900">1. Natureza da Ferramenta</h3>
+                        <p class="text-gray-600">O VetComplex IA é uma ferramenta de apoio científico e educacional, destinada exclusivamente a médicos veterinários. A decisão clínica, o diagnóstico, a prescrição e a decisão final são atos exclusivos do médico-veterinário responsável.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-bold text-xl mb-2 text-gray-900">2. Responsabilidade do Conteúdo</h3>
+                        <p class="text-gray-600">O conteúdo gerado é educacional e informativo, baseado em literatura científica. Toda comunicação institucional seguirá os princípios de clareza, objetividade e ética, conforme a Resolução CFMV nº 1.649/2025. Caso sejam divulgados serviços clínicos além da tecnologia, será informado de forma clara o nome e número de registro no CRMV do responsável técnico.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-bold text-xl mb-2 text-gray-900">3. Limitação de Responsabilidade</h3>
+                        <p class="text-gray-600">O VetComplex IA é um recurso de apoio, e não assume responsabilidade pelas decisões clínicas dos usuários. O uso incorreto da plataforma é de inteira responsabilidade do usuário. O VetComplex IA não garante disponibilidade ininterrupta, podendo haver períodos de manutenção ou instabilidade técnica. Ao utilizar a ferramenta, o usuário reconhece que a interpretação final e a conduta clínica são atos privativos do médico-veterinário.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="py-20 bg-white">
+            <div class="container mx-auto px-36">
+                <div class="md:grid md:grid-cols-2 md:gap-4 items-center">
+                    <div class="hidden md:block">
+                        <img src="./searchvetia-1.png" alt="Imagem de Contato VetComplex IA" class="rounded-lg shadow-2xl w-full max-w-sm mx-auto">
+                    </div>
+                    <div class="bg-gray-100 p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Entre em Contato</h3>
+                        <form action="#" method="POST" class="space-y-4">
+                            <div>
+                                <input type="text" id="name" name="name" placeholder="Seu nome" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0d1a2b]">
+                            </div>
+                            <div>
+                                <input type="email" id="email" name="email" placeholder="Seu e-mail" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0d1a2b]">
+                            </div>
+                            <div>
+                                <textarea id="message" name="message" rows="4" placeholder="Sua mensagem" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0d1a2b]"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-[#0d1a2b] text-white py-3 rounded-md font-bold hover:bg-gray-800 transition-colors">Enviar Mensagem</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#0d1a2b] text-white py-12 mt-20">
+        <div class="container mx-auto px-6 text-center md:text-left">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-xl font-bold mb-4">VetComplex IA</h4>
+                    <p class="text-gray-400 text-sm">A ferramenta que potencializa o diagnóstico veterinário com o poder da IA.</p>
+                </div>
+                <div class="text-center md:text-left">
+                    <h4 class="text-xl font-bold mb-4">Links Úteis</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Sobre Nós</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Carreiras</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Suporte</a></li>
+                    </ul>
+                </div>
+                <div class="text-center md:text-left">
+                    <h4 class="text-xl font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Política de Privacidade</a></li>
+                        <li><a href="#termos" class="hover:text-white transition-colors">Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-500 text-sm">&copy; 2025 VetComplex IA. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="payment-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modal-title" class="text-xl md:text-2xl font-bold text-gray-900">Assinar Plano Solo</h3>
+                <button id="close-modal-btn" class="text-gray-500 hover:text-gray-800 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <p id="modal-valor" class="text-lg text-gray-600 mb-6">Valor: R$ 79/mês</p>
+            
+            <div id="payment-link-container" class="text-center">
+                <p class="text-gray-700 mb-4 font-semibold">Gerando link de pagamento...</p>
+                <div class="flex justify-center mb-4">
+                    <svg class="animate-spin -ml-1 mr-3 h-8 w-8 text-[#0d1a2b]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </div>
+                <p id="status-message" class="text-sm font-semibold text-gray-600"></p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('payment-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const btnsAssinar = document.querySelectorAll('.btn-assinar');
+            const modalTitle = document.getElementById('modal-title');
+            const modalValor = document.getElementById('modal-valor');
+            const statusMessage = document.getElementById('status-message');
+
+            // Evento para abrir o modal ao clicar em "Assinar"
+            btnsAssinar.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const plano = btn.getAttribute('data-plano');
+                    const valor = btn.getAttribute('data-valor');
+
+                    modalTitle.textContent = `Assinar Plano ${plano}`;
+                    modalValor.textContent = `Valor: R$ ${valor}/mês`;
+                    
+                    modal.classList.remove('hidden');
+
+                    createPaymentLink(plano, valor);
+                });
+            });
+
+            // Evento para fechar o modal
+            closeModalBtn.addEventListener('click', () => {
+                modal.classList.add('hidden');
+                statusMessage.textContent = '';
+            });
+            
+            // Função para criar o link de pagamento via API
+            async function createPaymentLink(plano, valor) {
+                statusMessage.textContent = 'Gerando link de pagamento...';
+                
+                let description = '';
+                let billingTypes = [];
+
+                switch(plano) {
+                    case 'Solo':
+                        description = 'Assinatura do Plano Solo - VetComplex IA';
+                        billingTypes = ['PIX', 'CREDIT_CARD'];
+                        break;
+                    case 'Duo':
+                        description = 'Assinatura do Plano Duo - VetComplex IA';
+                        billingTypes = ['PIX', 'CREDIT_CARD'];
+                        break;
+                    case 'Equipe':
+                        description = 'Assinatura do Plano Equipe - VetComplex IA';
+                        billingTypes = ['PIX', 'CREDIT_CARD'];
+                        break;
+                    case 'Total':
+                        description = 'Assinatura do Plano Total - VetComplex IA';
+                        billingTypes = ['PIX', 'CREDIT_CARD'];
+                        break;
+                    default:
+                        description = 'Assinatura VetComplex IA';
+                        billingTypes = ['PIX', 'CREDIT_CARD'];
+                }
+
+                try {
+                    const response = await fetch('http://localhost:3000/create-payment-link', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            name: `Assinatura Plano ${plano}`,
+                            description: description,
+                            value: parseFloat(valor),
+                            billingTypes: billingTypes
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        statusMessage.textContent = 'Redirecionando para o pagamento...';
+                        window.location.href = data.paymentLink;
+                    } else {
+                        statusMessage.textContent = 'Erro: ' + (data.error || 'Não foi possível gerar o link de pagamento.');
+                        console.error('Erro ao criar o link de pagamento:', data.details);
+                    }
+
+                } catch (error) {
+                    statusMessage.textContent = 'Erro de conexão com o servidor. Verifique se o servidor está rodando.';
+                    console.error('Erro de requisição:', error);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

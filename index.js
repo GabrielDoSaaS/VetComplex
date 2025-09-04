@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
@@ -11,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 // Substitua com sua chave de API Asaas
-const ASAAS_API_KEY = '$aact_hmlg_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OjE2NmZlYjIxLWE3OGItNDBjYS05NzJmLWNlN2M4MjA1MjA4Mjo6JGFhY2hfZWVkZjg5YWUtNDZiMy00NmJjLWIxM2YtMDAyNmU5YWNhY2Mx'; 
+const ASAAS_API_KEY = process.env.ASAAS_API_KEY; 
 // URL base da API Asaas (use sandbox para testes)
 const ASAAS_API_URL = 'https://api.asaas.com/v3';
 
